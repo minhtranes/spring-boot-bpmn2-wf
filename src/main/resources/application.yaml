@@ -1,0 +1,37 @@
+spring:
+   jmx.enabled: true
+   profiles.active: default
+   activemq:
+      broker-url: tcp://192.168.56.1:61616
+      in-memory: true
+      user: admin
+      password: cdipp
+   cloud:
+      stream:
+         bindings:
+            orderChannel:
+               destination: orders
+               binder: activemq
+               group: main
+            finishedOrderChannel:
+               destination: finished-orders
+               binder: activemq
+               producer:
+                  requiredGroups: main
+management:
+   endpoints:
+      enabled-by-default: true
+      web:
+         exposure:
+            include: '*'
+      jmx:
+         exposure:
+            include: '*'
+   endpoint:
+      info:
+         enabled: true
+      restart:
+         enabled: true
+      beans:
+         cache:
+            time-to-live: 15s

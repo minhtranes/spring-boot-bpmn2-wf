@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootBpmn2WfApplication {
+public class ActivitiPersistenceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootBpmn2WfApplication.class, args);
+		SpringApplication.run(ActivitiPersistenceApplication.class, args);
 	}
 
 }

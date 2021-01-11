@@ -10,9 +10,9 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>vn.minhtran</groupId>
-    <artifactId>spring-boot-bpmn2-simple</artifactId>
+    <artifactId>spring-boot-bpmn2-persistence</artifactId>
     <version>0.0.1.1</version>
-    <name>spring-boot-bpmn2-simple</name>
+    <name>spring-boot-bpmn2-persistence</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -47,6 +47,11 @@
             <artifactId>activiti-spring-boot-starter</artifactId>
             <version>7.1.99</version>
         </dependency>
+        <dependency>
+	<groupId>org.activiti</groupId>
+	<artifactId>activiti-spring-boot-starter-jpa</artifactId>
+	<version>7.1.99</version>
+</dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

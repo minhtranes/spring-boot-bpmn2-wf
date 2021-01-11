@@ -1,0 +1,6 @@
+spring:
+   datasource:
+      url: jdbc:postgresql://192.168.56.2:5432/activiti
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver

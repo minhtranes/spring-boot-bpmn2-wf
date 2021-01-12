@@ -12,6 +12,7 @@
  */
 package vn.minhtran.sbw.config;
 
+
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;

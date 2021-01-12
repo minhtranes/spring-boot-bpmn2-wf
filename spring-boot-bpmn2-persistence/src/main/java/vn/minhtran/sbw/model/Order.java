@@ -4,34 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private String customerName;
 
-    private List<Dish> dishes = new ArrayList<>();
+	private Long id;
 
-    private boolean payed;
+	public Long getId() {
+		return id;
+	}
 
-    public boolean isPayed() {
-        return payed;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setPayed(boolean payed) {
-        this.payed = payed;
-    }
+	private String customerName;
 
-    public String getCustomerName() {
-        return customerName;
-    }
+	private List<Dish> dishes = new ArrayList<>();
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+	private boolean payed;
 
-    public List<Dish> getDishes() {
-        return dishes;
-    }
+	public boolean isPayed() {
+		return payed;
+	}
 
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
-    }
+	public void setPayed(boolean payed) {
+		this.payed = payed;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public List<Dish> getDishes() {
+		return dishes;
+	}
+
+	public void setDishes(List<Dish> dishes) {
+		this.dishes = dishes;
+	}
 
 }

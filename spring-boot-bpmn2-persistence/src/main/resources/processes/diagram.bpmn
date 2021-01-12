@@ -28,7 +28,7 @@
         <bpmn:sequenceFlow id="Flow_0rh702t"
             sourceRef="Activity_1jafhhe" targetRef="Event_1h7rrhq" />
         <bpmn:serviceTask id="Activity_1pkj64t"
-            name="receive" ac:expression="#{waitingService.receive(order)}">
+            name="receive" ac:expression="#{waitingService.receive(order)}" ac:resultVariable="orderInfo">
             <bpmn:incoming>Flow_1cyhctf</bpmn:incoming>
             <bpmn:outgoing>Flow_1tsyngy</bpmn:outgoing>
         </bpmn:serviceTask>

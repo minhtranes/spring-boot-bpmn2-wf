@@ -1,8 +1,10 @@
 package vn.minhtran.sbw.model;
 
 public class Dish {
+	
     private String name;
     private int price;
+    
     public String getName() {
         return name;
     }

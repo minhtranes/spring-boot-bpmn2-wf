@@ -18,6 +18,13 @@ spring:
                binder: activemq
                producer:
                   requiredGroups: main
+   security:
+      user:
+         name: admin
+         password: admin
+   activiti:
+      historyLevel: FULL
+      dbHistoryUsed: true
 management:
    endpoints:
       enabled-by-default: true

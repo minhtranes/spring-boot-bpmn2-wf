@@ -7,7 +7,6 @@ import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.ProcessInstanceHistoryLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +36,6 @@ public class HistoryController {
 				.createHistoricProcessInstanceQuery().finished()
 				.processDefinitionId(processDefinitionId)
 				.orderByProcessInstanceDuration().desc().listPage(0, 10);
-		histories.forEach(t -> {
-			System.out.println(t.getId());
-		});
-
 		return histories;
 	}
 	

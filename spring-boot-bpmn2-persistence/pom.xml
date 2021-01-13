@@ -19,6 +19,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <activiti.version>7.1.0.M6</activiti.version>
+        <activiti-jmx.version>6.0.0</activiti-jmx.version>
     </properties>
 
     <dependencies>
@@ -57,6 +58,11 @@
             <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-jmx</artifactId>
+            <version>${activiti-jmx.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -85,13 +91,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- <dependency>
-                <groupId>org.activiti.dependencies</groupId>
-                <artifactId>activiti-dependencies</artifactId>
-                <version>${activiti.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency> -->
+            <!-- <dependency> <groupId>org.activiti.dependencies</groupId> 
+                <artifactId>activiti-dependencies</artifactId> <version>${activiti.version}</version> 
+                <scope>import</scope> <type>pom</type> </dependency> -->
         </dependencies>
     </dependencyManagement>
 

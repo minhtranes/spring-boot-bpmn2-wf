@@ -2,7 +2,7 @@ spring:
    jmx.enabled: true
    profiles.active: default
    activemq:
-      broker-url: tcp://192.168.56.1:61616
+      broker-url: tcp://192.168.56.2:61616
       in-memory: true
       user: admin
       password: cdipp
@@ -23,7 +23,7 @@ spring:
          name: admin
          password: admin
    activiti:
-      historyLevel: FULL
+      historyLevel: full
       dbHistoryUsed: true
 management:
    endpoints:

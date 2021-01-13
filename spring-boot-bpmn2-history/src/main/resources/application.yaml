@@ -1,0 +1,28 @@
+server.port: 8081
+spring:
+   jmx.enabled: true
+   profiles.active: default
+   security:
+      user:
+         name: admin
+         password: admin
+   activiti:
+      historyLevel: full
+      dbHistoryUsed: true
+management:
+   endpoints:
+      enabled-by-default: true
+      web:
+         exposure:
+            include: '*'
+      jmx:
+         exposure:
+            include: '*'
+   endpoint:
+      info:
+         enabled: true
+      restart:
+         enabled: true
+      beans:
+         cache:
+            time-to-live: 15s

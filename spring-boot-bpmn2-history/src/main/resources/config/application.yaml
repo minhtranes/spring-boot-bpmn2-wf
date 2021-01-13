@@ -1,0 +1,15 @@
+spring:
+   datasource:
+      url: jdbc:postgresql://192.168.56.2:5432/activiti
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+         idle-timeout: 30000
+         minimum-idle: 2
+         maximum-pool-size: 50
+   jpa:
+      hibernate.ddl-auto: update
+      show-sql: true
+      properties.hibernate.format_sql: true

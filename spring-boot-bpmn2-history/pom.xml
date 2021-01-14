@@ -19,9 +19,15 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <activiti.version>7.1.0.M6</activiti.version>
+        <spring-boot-bpmn2-common.version>0.0.1.1</spring-boot-bpmn2-common.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>vn.minhtran.study</groupId>
+            <artifactId>spring-boot-bpmn2-common</artifactId>
+            <version>${spring-boot-bpmn2-common.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -69,13 +75,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- <dependency>
-                <groupId>org.activiti.dependencies</groupId>
-                <artifactId>activiti-dependencies</artifactId>
-                <version>${activiti.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency> -->
+            <!-- <dependency> <groupId>org.activiti.dependencies</groupId> 
+                <artifactId>activiti-dependencies</artifactId> <version>${activiti.version}</version> 
+                <scope>import</scope> <type>pom</type> </dependency> -->
         </dependencies>
     </dependencyManagement>
 

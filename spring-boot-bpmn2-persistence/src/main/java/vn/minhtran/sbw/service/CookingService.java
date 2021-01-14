@@ -12,7 +12,7 @@ public class CookingService {
     private static final Logger LOGGER = LoggerFactory
         .getLogger(CookingService.class);
 
-    public Order cook(Order order) {
+    public Order cook(String orderId, Order order) {
         LOGGER.info("Cook an order for customer [{}]", order.getCustomerName());
         
         return order;

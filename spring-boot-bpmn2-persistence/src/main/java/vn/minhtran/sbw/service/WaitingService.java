@@ -12,14 +12,14 @@ public class WaitingService {
     private static final Logger LOGGER = LoggerFactory
         .getLogger(WaitingService.class);
 
-    public Order serve(Order order) {
+    public Order serve(String orderId, Order order) {
 
         LOGGER
             .info("Serve an order for customer [{}]", order.getCustomerName());
         return order;
     }
 
-    public Order receive(Order order) {
+    public Order receive(String orderId, Order order) {
         LOGGER.info(
             "Received an order for customer [{}]",
             order.getCustomerName());

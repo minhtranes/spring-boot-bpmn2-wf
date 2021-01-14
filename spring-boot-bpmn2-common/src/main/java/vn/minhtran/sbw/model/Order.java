@@ -5,44 +5,54 @@ import java.util.List;
 
 public class Order {
 
-	private Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	private String customerName;
 
 	private List<Dish> dishes = new ArrayList<>();
 
+	private Long id;
+
+	private String orderId;
+
 	private boolean payed;
 
-	public boolean isPayed() {
-		return payed;
-	}
-
-	public void setPayed(boolean payed) {
-		this.payed = payed;
-	}
-
 	public String getCustomerName() {
-		return customerName;
-	}
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+		return this.customerName;
 	}
 
 	public List<Dish> getDishes() {
-		return dishes;
+		return this.dishes;
 	}
 
-	public void setDishes(List<Dish> dishes) {
+	public Long getId() {
+		return this.id;
+	}
+
+	public String getOrderId() {
+		return this.orderId;
+	}
+
+	public boolean isPayed() {
+		return this.payed;
+	}
+
+	public void setCustomerName(final String customerName) {
+		this.customerName = customerName;
+	}
+
+	public void setDishes(final List<Dish> dishes) {
 		this.dishes = dishes;
+	}
+
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	public void setOrderId(final String orderId) {
+		this.orderId = orderId;
+	}
+
+	public void setPayed(final boolean payed) {
+		this.payed = payed;
 	}
 
 }

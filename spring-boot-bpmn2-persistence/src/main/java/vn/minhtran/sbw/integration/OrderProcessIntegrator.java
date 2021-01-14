@@ -27,7 +27,10 @@ public class OrderProcessIntegrator {
 	public Order start(Order order) {
 
 		final Map<String, Object> variables = new HashMap<>();
-		variables.put("order", order);
+		{
+			variables.put("order", order);
+			variables.put("orderId", order.getOrderId());
+		}
 		runtimeService.startProcessInstanceByKey("Process_0tgbap2", variables);
 
 		LOGGER.info("Done process the order for customer [{}]",

@@ -12,7 +12,7 @@ public class PaymentService {
     private static final Logger LOGGER = LoggerFactory
         .getLogger(PaymentService.class);
 
-    public Order pay(String orderId, Order order) {
+    public Order pay(Order order) {
         LOGGER.info("Pay an order for customer [{}]", order.getCustomerName());
         order.setPayed(true);
         

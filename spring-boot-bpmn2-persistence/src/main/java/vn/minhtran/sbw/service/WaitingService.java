@@ -19,7 +19,7 @@ public class WaitingService {
         return order;
     }
 
-    public Order receive(String orderId, Order order) {
+    public Order receive(Order order) {
         LOGGER.info(
             "Received an order for customer [{}]",
             order.getCustomerName());

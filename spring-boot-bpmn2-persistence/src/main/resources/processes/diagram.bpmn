@@ -28,22 +28,22 @@
         <bpmn:sequenceFlow id="Flow_0rh702t"
             sourceRef="Activity_1jafhhe" targetRef="Event_1h7rrhq" />
         <bpmn:serviceTask id="Activity_1pkj64t"
-            name="receive" ac:expression="#{waitingService.receive(orderId, order)}" ac:resultVariableName="order">
+            name="receive" ac:expression="#{waitingService.receive(order)}" ac:resultVariableName="order">
             <bpmn:incoming>Flow_1cyhctf</bpmn:incoming>
             <bpmn:outgoing>Flow_1tsyngy</bpmn:outgoing>
         </bpmn:serviceTask>
         <bpmn:serviceTask id="Activity_09l5bzk"
-            name="payment" ac:expression="#{paymentService.pay(orderId, order)}" ac:resultVariableName="order">
+            name="payment" ac:expression="#{paymentService.pay(order)}" ac:resultVariableName="order">
             <bpmn:incoming>Flow_1tsyngy</bpmn:incoming>
             <bpmn:outgoing>Flow_0yuixga</bpmn:outgoing>
         </bpmn:serviceTask>
         <bpmn:serviceTask id="Activity_1ltfh7r"
-            name="cook" ac:expression="#{cookingService.cook(orderId, order)}" ac:resultVariableName="order">
+            name="cook" ac:expression="#{cookingService.cook(order)}" ac:resultVariableName="order">
             <bpmn:incoming>Flow_0yuixga</bpmn:incoming>
             <bpmn:outgoing>Flow_0i7tyt4</bpmn:outgoing>
         </bpmn:serviceTask>
         <bpmn:serviceTask id="Activity_1jafhhe"
-            name="serve" ac:expression="#{waitingService.serve(orderId, order)}" ac:resultVariableName="order">
+            name="serve" ac:expression="#{waitingService.serve(order)}" ac:resultVariableName="order">
             <bpmn:incoming>Flow_0i7tyt4</bpmn:incoming>
             <bpmn:outgoing>Flow_0rh702t</bpmn:outgoing>
         </bpmn:serviceTask>

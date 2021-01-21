@@ -20,6 +20,7 @@
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <activiti.version>7.1.0.M6</activiti.version>
         <spring-boot-bpmn2-common.version>0.0.1.1</spring-boot-bpmn2-common.version>
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     </properties>
 
     <dependencies>

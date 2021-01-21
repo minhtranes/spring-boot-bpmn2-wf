@@ -3,6 +3,7 @@ package vn.minhtran.sbw.present;
 import java.util.List;
 
 import org.activiti.engine.HistoryService;
+import org.activiti.engine.history.HistoricDetail;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.ProcessInstanceHistoryLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,23 +23,20 @@ public class HistoryController {
 	
 	@GetMapping("/process")
 	public List<HistoricProcessInstance> processDefinitions() {
-		List<HistoricProcessInstance> histories = historyService
+	    return historyService
 				.createHistoricProcessInstanceQuery()
 				.orderByProcessInstanceStartTime().desc().list();
-
-		return histories;
 	}
 
-	@GetMapping("/process/{processDefinitionId}")
-	public List<HistoricProcessInstance> history(
-			@PathVariable(name = "processDefinitionId", required = true) String processDefinitionId) {
-		List<HistoricProcessInstance> histories = historyService
-				.createHistoricProcessInstanceQuery().finished()
-				.processDefinitionId(processDefinitionId)
-				.orderByProcessInstanceDuration().desc().listPage(0, 10);
-		return histories;
-	}
-	
+    @GetMapping("/process/{processDefinitionId}")
+    public List<HistoricProcessInstance> history(
+        @PathVariable(name = "processDefinitionId", required = true) String processDefinitionId) {
+
+        return historyService.createHistoricProcessInstanceQuery().finished()
+            .processDefinitionId(processDefinitionId)
+            .orderByProcessInstanceDuration().desc().listPage(0, 10);
+    }
+
 	@GetMapping("/process/instance/{processInstanceId}")
 	public ProcessInstanceHistoryLog delete(
 			@PathVariable(name = "processInstanceId", required = true) String processInstanceId) {
@@ -48,4 +46,13 @@ public class HistoryController {
 			.includeActivities()
 			.singleResult();
 	}
+	
+    @GetMapping("/process/orderId/{orderId}")
+    public List<HistoricDetail> historyByOrderId(
+        @PathVariable(name = "orderId", required = true) String orderId) {
+
+        return this.historyService.createNativeHistoricDetailQuery().sql(
+            "select * from act_hi_detail where text_::jsonb ->> 'orderId' = #{orderId} and name_ = 'order'")
+            .parameter("orderId", orderId).list();
+    }
 }

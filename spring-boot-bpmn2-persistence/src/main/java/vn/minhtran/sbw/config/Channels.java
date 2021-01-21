@@ -7,8 +7,15 @@ import org.springframework.messaging.MessageChannel;
 public interface Channels {
     
     @Input
-    MessageChannel orderChannel();
+    MessageChannel receiveCookChannel();
     
     @Output
-    MessageChannel finishedOrderChannel();
+    MessageChannel finishedReceiveCookChannel();
+    
+    @Input
+    MessageChannel servePayChannel();
+    
+    @Output
+    MessageChannel finishedServePayChannel();
+    
 }

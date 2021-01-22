@@ -9,24 +9,16 @@ spring:
    cloud:
       stream:
          bindings:
-            receiveCookChannel:
+            orderChannel:
                destination: receive-cook
                binder: activemq
                group: main
                
-            finishedReceiveCookChannel:
+            finishedOrderChannel:
                destination: finished-receive-cook
                binder: activemq
                producer:
                   requiredGroups: main
-            servePayChannel:
-               destination: finished-receive-cook
-               binder: activemq
-               group: main
-               
-            finishedServePayChannel:
-               destination: finished-serve-pay
-               binder: activemq
    security:
       user:
          name: admin

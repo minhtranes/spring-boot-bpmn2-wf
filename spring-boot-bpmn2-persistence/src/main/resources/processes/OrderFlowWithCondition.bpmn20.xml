@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="OrderFlow" name="OrderFlow" isExecutable="true">
+    <documentation>Test a new model</documentation>
+    <startEvent id="startEvent" name="Start Event"></startEvent>
+    <serviceTask id="receiveActivity" name="Receive Activity" activiti:expression="#{waitingServiceTask.receive(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="cookActivity" name="Cook" activiti:expression="#{cookingServiceTask.cook(order)}" activiti:resultVariableName="order"></serviceTask>
+    <exclusiveGateway id="isTakeAway" name="Is take away"></exclusiveGateway>
+    <serviceTask id="serveActivity" name="Serve" activiti:expression="#{waitingServiceTask.serve(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="paymentActivity" name="Payment" activiti:async="true" activiti:exclusive="false" activiti:expression="#{paymentServiceTask.pay(order)}" activiti:resultVariableName="order"></serviceTask>
+    <sequenceFlow id="sid-B270FF06-7291-46AF-800B-84C6B0BBAC6C" sourceRef="startEvent" targetRef="receiveActivity"></sequenceFlow>
+    <sequenceFlow id="sid-C26E817C-7D33-4025-BE9F-ACC27A1C7624" sourceRef="receiveActivity" targetRef="cookActivity"></sequenceFlow>
+    <sequenceFlow id="sid-1B645E1C-169D-418E-AF58-B8C62E77C885" sourceRef="cookActivity" targetRef="isTakeAway"></sequenceFlow>
+    <sequenceFlow id="sid-92E3784B-480D-4B77-B098-3397AFB79655" sourceRef="serveActivity" targetRef="paymentActivity"></sequenceFlow>
+    <endEvent id="endEvent" name="End Event"></endEvent>
+    <sequenceFlow id="sid-13EA9E76-042B-4E7B-8181-58283B9A1EA9" sourceRef="paymentActivity" targetRef="endEvent"></sequenceFlow>
+    <sequenceFlow id="takeAway" name="yes" sourceRef="isTakeAway" targetRef="paymentActivity">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${order.isTakeAway == true}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="noTakeAway" name="no" sourceRef="isTakeAway" targetRef="serveActivity">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${order.isTakeAway == false}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_OrderFlow">
+    <bpmndi:BPMNPlane bpmnElement="OrderFlow" id="BPMNPlane_OrderFlow">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="30.0" width="30.0" x="15.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receiveActivity" id="BPMNShape_receiveActivity">
+        <omgdc:Bounds height="80.0" width="100.0" x="105.0" y="225.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="cookActivity" id="BPMNShape_cookActivity">
+        <omgdc:Bounds height="80.0" width="100.0" x="285.0" y="225.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="isTakeAway" id="BPMNShape_isTakeAway">
+        <omgdc:Bounds height="40.0" width="40.0" x="476.5" y="243.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="serveActivity" id="BPMNShape_serveActivity">
+        <omgdc:Bounds height="80.0" width="100.0" x="600.0" y="315.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="paymentActivity" id="BPMNShape_paymentActivity">
+        <omgdc:Bounds height="80.0" width="100.0" x="810.0" y="315.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+        <omgdc:Bounds height="28.0" width="28.0" x="1037.5" y="341.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-B270FF06-7291-46AF-800B-84C6B0BBAC6C" id="BPMNEdge_sid-B270FF06-7291-46AF-800B-84C6B0BBAC6C">
+        <omgdi:waypoint x="45.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="105.0" y="265.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-13EA9E76-042B-4E7B-8181-58283B9A1EA9" id="BPMNEdge_sid-13EA9E76-042B-4E7B-8181-58283B9A1EA9">
+        <omgdi:waypoint x="910.0" y="355.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1037.5" y="355.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-92E3784B-480D-4B77-B098-3397AFB79655" id="BPMNEdge_sid-92E3784B-480D-4B77-B098-3397AFB79655">
+        <omgdi:waypoint x="700.0" y="355.0"></omgdi:waypoint>
+        <omgdi:waypoint x="810.0" y="355.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-1B645E1C-169D-418E-AF58-B8C62E77C885" id="BPMNEdge_sid-1B645E1C-169D-418E-AF58-B8C62E77C885">
+        <omgdi:waypoint x="385.0" y="264.38080495356036"></omgdi:waypoint>
+        <omgdi:waypoint x="476.74464831804283" y="263.24464831804283"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-C26E817C-7D33-4025-BE9F-ACC27A1C7624" id="BPMNEdge_sid-C26E817C-7D33-4025-BE9F-ACC27A1C7624">
+        <omgdi:waypoint x="205.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="285.0" y="265.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="noTakeAway" id="BPMNEdge_noTakeAway">
+        <omgdi:waypoint x="497.0" y="282.5"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="355.0"></omgdi:waypoint>
+        <omgdi:waypoint x="600.0" y="355.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="takeAway" id="BPMNEdge_takeAway">
+        <omgdi:waypoint x="497.0" y="243.5"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="315.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -18,10 +18,10 @@ import com.jayway.jsonpath.JsonPath;
 
 @MessageEndpoint
 @Transactional
-public class RecevieCookProcessIntegrator {
+public class OrderProcessIntegrator {
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RecevieCookProcessIntegrator.class);
+			.getLogger(OrderProcessIntegrator.class);
 
 	@Autowired
 	private RuntimeService runtimeService;
@@ -29,7 +29,7 @@ public class RecevieCookProcessIntegrator {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	@ServiceActivator(inputChannel = "receiveCookChannel", outputChannel = "servePayChannel")
+	@ServiceActivator(inputChannel = "orderChannel", outputChannel = "finishedOrderChannel")
 	public Object start(ObjectNode order) {
 
         final Map<String, Object> variables = new HashMap<>();
@@ -41,10 +41,10 @@ public class RecevieCookProcessIntegrator {
         
         variables.put("order", jsonData.read("$"));
         variables.put("orderId", jsonData.read("$.orderId"));
-		runtimeService.startProcessInstanceByKey("Process_0tgbap2", variables);
+		runtimeService.startProcessInstanceByKey("OrderFlow", variables);
 
         LOGGER.info(
-            "Done process the receive and cook for customer [{}]",
+            "Done process the order for customer [{}]",
             jsonData.read("$.customerName").toString());
 
 		return order;

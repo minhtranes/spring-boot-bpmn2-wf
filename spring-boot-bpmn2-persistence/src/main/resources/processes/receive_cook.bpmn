@@ -3,8 +3,8 @@
   <process id="Process_0tgbap2" isExecutable="true">
     <startEvent id="StartEvent_0i39dhh"></startEvent>
     <sequenceFlow id="Flow_1cyhctf" sourceRef="StartEvent_0i39dhh" targetRef="Activity_1pkj64t"></sequenceFlow>
-    <serviceTask id="Activity_1pkj64t" name="receive" activiti:expression="#{waitingService.receive(order)}" activiti:resultVariableName="order"></serviceTask>
-    <serviceTask id="Activity_1ltfh7r" name="cook" activiti:expression="#{cookingService.cook(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="Activity_1pkj64t" name="receive" activiti:expression="#{waitingServiceTask.receive(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="Activity_1ltfh7r" name="cook" activiti:expression="#{cookingServiceTask.cook(order)}" activiti:resultVariableName="order"></serviceTask>
     <sequenceFlow id="Flow_1tsyngy" sourceRef="Activity_1pkj64t" targetRef="Activity_1ltfh7r"></sequenceFlow>
     <endEvent id="sid-132F04B0-67A4-427A-9F1C-3452CF75FBBA"></endEvent>
     <sequenceFlow id="sid-CBF672A2-7BB5-4634-9A12-BDF7A73FA613" sourceRef="Activity_1ltfh7r" targetRef="sid-132F04B0-67A4-427A-9F1C-3452CF75FBBA"></sequenceFlow>

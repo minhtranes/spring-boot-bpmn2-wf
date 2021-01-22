@@ -3,9 +3,9 @@
   <process id="serve_payment" name="serve_payment" isExecutable="true">
     <documentation>serve_payment</documentation>
     <startEvent id="startEvent1"></startEvent>
-    <serviceTask id="serve" name="serve" activiti:expression="#{waitingService.serve(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="serve" name="serve" activiti:expression="#{waitingServiceTask.serve(order)}" activiti:resultVariableName="order"></serviceTask>
     <sequenceFlow id="sid-343AEF1E-49AC-4824-88A9-CF5F6EB56524" sourceRef="startEvent1" targetRef="serve"></sequenceFlow>
-    <serviceTask id="payment" name="payment" activiti:expression="#{paymentService.pay(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="payment" name="payment" activiti:expression="#{paymentServiceTask.pay(order)}" activiti:resultVariableName="order"></serviceTask>
     <sequenceFlow id="sid-BDCA8E26-54BE-4DF6-819B-D69F686428D3" sourceRef="serve" targetRef="payment"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_serve_payment">

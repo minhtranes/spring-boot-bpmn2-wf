@@ -1,4 +1,4 @@
-package vn.minhtran.sbw.service;
+package vn.minhtran.sbw.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +8,10 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 @Service
-public class CookingService {
+public class CookingServiceTask {
 
     private static final Logger LOGGER = LoggerFactory
-        .getLogger(CookingService.class);
+        .getLogger(CookingServiceTask.class);
 
     public Object cook(Object order) {
         final DocumentContext jsonData = JsonPath.parse(order);

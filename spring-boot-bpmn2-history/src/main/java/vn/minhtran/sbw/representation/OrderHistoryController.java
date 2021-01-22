@@ -1,4 +1,4 @@
-package vn.minhtran.sbw.present;
+package vn.minhtran.sbw.representation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +13,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class OrderHistoryController.
+ */
 @RestController
 @RequestMapping("/history/orders")
 public class OrderHistoryController {
 
+	/** The history service. */
 	@Autowired
 	private HistoryService historyService;
 
+	/** The history controller. */
 	@Autowired
 	private HistoryController historyController;
 
+	/**
+	 * Delete.
+	 *
+	 * @param variableName the variable name
+	 * @param variableValue the variable value
+	 * @return the list
+	 */
 	@GetMapping("/{variableName}/{variableValue}")
 	public List<ProcessInstanceHistoryLog> delete(
 			@PathVariable(name = "variableName", required = true) String variableName,

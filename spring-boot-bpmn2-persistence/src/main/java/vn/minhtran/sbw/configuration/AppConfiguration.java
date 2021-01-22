@@ -10,7 +10,7 @@
  * Swiss Post Solution.
  * Floor 4-5-8, ICT Tower, Quang Trung Software City
  */
-package vn.minhtran.sbw.config;
+package vn.minhtran.sbw.configuration;
 
 
 import org.springframework.cloud.stream.annotation.EnableBinding;

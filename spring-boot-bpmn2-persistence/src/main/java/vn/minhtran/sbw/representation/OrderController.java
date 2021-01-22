@@ -1,4 +1,4 @@
-package vn.minhtran.sbw.present;
+package vn.minhtran.sbw.representation;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

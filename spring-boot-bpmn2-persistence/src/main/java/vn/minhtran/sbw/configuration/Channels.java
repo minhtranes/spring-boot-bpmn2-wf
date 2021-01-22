@@ -1,4 +1,4 @@
-package vn.minhtran.sbw.config;
+package vn.minhtran.sbw.configuration;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;

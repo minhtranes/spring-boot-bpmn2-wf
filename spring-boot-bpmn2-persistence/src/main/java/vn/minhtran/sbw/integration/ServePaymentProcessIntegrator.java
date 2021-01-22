@@ -29,13 +29,12 @@ import com.jayway.jsonpath.JsonPath;
 
 @MessageEndpoint
 public class ServePaymentProcessIntegrator {
-    
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(ServePaymentProcessIntegrator.class);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServePaymentProcessIntegrator.class);
 
     @Autowired
     private RuntimeService runtimeService;
-    
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -43,21 +42,18 @@ public class ServePaymentProcessIntegrator {
     public Object start(ObjectNode order) {
 
         final Map<String, Object> variables = new HashMap<>();
-        
+
         final Object objectAsMap = this.objectMapper.convertValue(order, Map.class);
-        
-        
+
         final DocumentContext jsonData = JsonPath.parse(objectAsMap);
-        
+
         variables.put("order", jsonData.read("$"));
         variables.put("orderId", jsonData.read("$.orderId"));
         runtimeService.startProcessInstanceByKey("serve_payment", variables);
 
-        LOGGER.info(
-            "Done process the serve and pay for customer [{}]",
-            jsonData.read("$.customerName").toString());
+        LOGGER.info("Done process the serve and pay for customer [{}]", jsonData.read("$.customerName").toString());
 
         return order;
     }
-    
+
 }

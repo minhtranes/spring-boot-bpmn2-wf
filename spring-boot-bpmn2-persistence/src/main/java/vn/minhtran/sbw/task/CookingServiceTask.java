@@ -10,13 +10,12 @@ import com.jayway.jsonpath.JsonPath;
 @Service
 public class CookingServiceTask {
 
-    private static final Logger LOGGER = LoggerFactory
-        .getLogger(CookingServiceTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CookingServiceTask.class);
 
     public Object cook(Object order) {
         final DocumentContext jsonData = JsonPath.parse(order);
         LOGGER.info("Cook an order for customer [{}]", jsonData.read("$.customerName").toString());
-        
+
         return order;
     }
 }

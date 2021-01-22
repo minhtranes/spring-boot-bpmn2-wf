@@ -20,33 +20,29 @@ import com.jayway.jsonpath.JsonPath;
 @Transactional
 public class RecevieCookProcessIntegrator {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(RecevieCookProcessIntegrator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RecevieCookProcessIntegrator.class);
 
-	@Autowired
-	private RuntimeService runtimeService;
-	
-	@Autowired
-	private ObjectMapper objectMapper;
+    @Autowired
+    private RuntimeService runtimeService;
 
-	@ServiceActivator(inputChannel = "receiveCookChannel", outputChannel = "servePayChannel")
-	public Object start(ObjectNode order) {
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @ServiceActivator(inputChannel = "receiveCookChannel", outputChannel = "servePayChannel")
+    public Object start(ObjectNode order) {
 
         final Map<String, Object> variables = new HashMap<>();
-        
+
         final Object objectAsMap = this.objectMapper.convertValue(order, Map.class);
-        
-        
+
         final DocumentContext jsonData = JsonPath.parse(objectAsMap);
-        
+
         variables.put("order", jsonData.read("$"));
         variables.put("orderId", jsonData.read("$.orderId"));
-		runtimeService.startProcessInstanceByKey("Process_0tgbap2", variables);
+        runtimeService.startProcessInstanceByKey("Process_0tgbap2", variables);
 
-        LOGGER.info(
-            "Done process the receive and cook for customer [{}]",
-            jsonData.read("$.customerName").toString());
+        LOGGER.info("Done process the receive and cook for customer [{}]", jsonData.read("$.customerName").toString());
 
-		return order;
-	}
+        return order;
+    }
 }

@@ -14,6 +14,6 @@ spring:
       show-sql: true
       properties.hibernate.format_sql: true
    activemq:
-      broker-url: tcp://localhost:61616
+      broker-url: tcp://10.10.15.219:61616
 server:
    port: 8088

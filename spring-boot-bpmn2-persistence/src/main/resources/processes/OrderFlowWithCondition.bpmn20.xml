@@ -7,7 +7,7 @@
     <serviceTask id="cookActivity" name="Cook" activiti:expression="#{cookingServiceTask.cook(order)}" activiti:resultVariableName="order"></serviceTask>
     <exclusiveGateway id="isTakeAway" name="Is take away"></exclusiveGateway>
     <serviceTask id="serveActivity" name="Serve" activiti:expression="#{waitingServiceTask.serve(order)}" activiti:resultVariableName="order"></serviceTask>
-    <serviceTask id="paymentActivity" name="Payment" activiti:async="true" activiti:exclusive="false" activiti:expression="#{paymentServiceTask.pay(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="paymentActivity" name="Payment" activiti:expression="#{paymentServiceTask.pay(order)}" activiti:resultVariableName="order"></serviceTask>
     <sequenceFlow id="sid-B270FF06-7291-46AF-800B-84C6B0BBAC6C" sourceRef="startEvent" targetRef="receiveActivity"></sequenceFlow>
     <sequenceFlow id="sid-C26E817C-7D33-4025-BE9F-ACC27A1C7624" sourceRef="receiveActivity" targetRef="cookActivity"></sequenceFlow>
     <sequenceFlow id="sid-1B645E1C-169D-418E-AF58-B8C62E77C885" sourceRef="cookActivity" targetRef="isTakeAway"></sequenceFlow>

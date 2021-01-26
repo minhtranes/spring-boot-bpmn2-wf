@@ -10,14 +10,31 @@ import com.jayway.jsonpath.JsonPath;
 @Service
 public class PaymentServiceTask {
 
-    private static final Logger LOGGER = LoggerFactory
-        .getLogger(PaymentServiceTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PaymentServiceTask.class);
 
     public Object pay(Object order) {
         final DocumentContext jsonData = JsonPath.parse(order);
         LOGGER.info("Pay an order for customer [{}]", jsonData.read("$.customerName").toString());
         jsonData.set("$.payed", true);
-        
+
+        return order;
+    }
+
+    public Object payByVisa(Object order) {
+        final DocumentContext jsonData = JsonPath.parse(order);
+        LOGGER.info(
+            "Pay an order for customer [{}] by method: [{}]",
+            jsonData.read("$.customerName").toString(),
+            jsonData.read("$.paymentMethod"));
+        return order;
+    }
+
+    public Object payByCash(Object order) {
+        final DocumentContext jsonData = JsonPath.parse(order);
+        LOGGER.info(
+            "Pay an order for customer [{}] by method: [{}]",
+            jsonData.read("$.customerName").toString(),
+            jsonData.read("$.paymentMethod"));
         return order;
     }
 }

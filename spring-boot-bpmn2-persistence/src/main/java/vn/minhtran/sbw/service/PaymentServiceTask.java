@@ -8,10 +8,10 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 @Service
-public class PaymentService {
+public class PaymentServiceTask {
 
     private static final Logger LOGGER = LoggerFactory
-        .getLogger(PaymentService.class);
+        .getLogger(PaymentServiceTask.class);
 
     public Object pay(Object order) {
         final DocumentContext jsonData = JsonPath.parse(order);

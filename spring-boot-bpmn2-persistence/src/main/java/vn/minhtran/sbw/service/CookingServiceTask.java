@@ -15,8 +15,11 @@ public class CookingServiceTask {
 
     public Object cook(Object order) {
         final DocumentContext jsonData = JsonPath.parse(order);
-        LOGGER.info("Cook an order for customer [{}]", jsonData.read("$.customerName").toString());
-        
+        LOGGER.info(
+            "Cook an order for customer [{}] - status [{}]",
+            jsonData.read("$.customerName").toString(),
+            jsonData.read("$.payed"));
+
         return order;
     }
 }

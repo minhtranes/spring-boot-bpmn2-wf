@@ -1,6 +1,6 @@
 spring:
    datasource:
-      url: jdbc:postgresql://10.10.15.219:5432/BPM_ACTIVITY
+      url: jdbc:postgresql://localhost:5432/BPM_ACTIVITY
       username: postgres
       password: 12345!fra
       driver-class-name: org.postgresql.Driver

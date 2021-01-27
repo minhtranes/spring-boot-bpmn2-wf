@@ -15,8 +15,6 @@ public class PaymentServiceTask {
     public Object pay(Object order) {
         final DocumentContext jsonData = JsonPath.parse(order);
         LOGGER.info("Pay an order for customer [{}]", jsonData.read("$.customerName").toString());
-        jsonData.set("$.payed", true);
-
         return order;
     }
 
@@ -35,6 +33,7 @@ public class PaymentServiceTask {
             "Pay an order for customer [{}] by method: [{}]",
             jsonData.read("$.customerName").toString(),
             jsonData.read("$.paymentMethod"));
+        jsonData.set("$.payed", true);
         return order;
     }
 }

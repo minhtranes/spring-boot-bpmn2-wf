@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="paymentFlow" name="SubPaymentProcessor" isExecutable="true">
+    <startEvent id="startPayment" name="Start payment"></startEvent>
+    <serviceTask id="payment" name="Payment" activiti:expression="#{paymentServiceTask.pay(order)}" activiti:resultVariableName="order"></serviceTask>
+    <subProcess id="subProcessPayment" name="Sub-Process Payment">
+      <startEvent id="startSubPayment" name="Start sub-payment"></startEvent>
+      <serviceTask id="paymentMethod" name="Payment Method" activiti:expression="#{paymentServiceTask.payByCash(order)}" activiti:resultVariableName="order"></serviceTask>
+      <endEvent id="endSubPayment" name="End sub-payment"></endEvent>
+      <sequenceFlow id="sid-B09D14DE-07CD-453E-BB1E-2A9C04E505D0" sourceRef="startSubPayment" targetRef="paymentMethod"></sequenceFlow>
+      <sequenceFlow id="sid-F01C113F-D355-4E28-A0F5-A5144B6D9331" sourceRef="paymentMethod" targetRef="endSubPayment"></sequenceFlow>
+    </subProcess>
+    <endEvent id="endPayment" name="End payment"></endEvent>
+    <sequenceFlow id="sid-B132DCF6-C7F4-4B7C-A73E-B2C82874997F" sourceRef="startPayment" targetRef="payment"></sequenceFlow>
+    <sequenceFlow id="sid-EAA4A85C-829E-4E82-B894-741704B91E6F" sourceRef="payment" targetRef="subProcessPayment"></sequenceFlow>
+    <serviceTask id="cook" name="Cook" activiti:expression="#{cookingServiceTask.cook(order)}"></serviceTask>
+    <sequenceFlow id="sid-305A2D35-DAEB-4C16-BE93-B898879B98B8" sourceRef="subProcessPayment" targetRef="cook"></sequenceFlow>
+    <sequenceFlow id="sid-413C5E6F-FD72-427C-9796-03E39CCAD14E" sourceRef="cook" targetRef="endPayment"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_paymentFlow">
+    <bpmndi:BPMNPlane bpmnElement="paymentFlow" id="BPMNPlane_paymentFlow">
+      <bpmndi:BPMNShape bpmnElement="startPayment" id="BPMNShape_startPayment">
+        <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="237.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="payment" id="BPMNShape_payment">
+        <omgdc:Bounds height="80.0" width="100.0" x="225.0" y="212.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="subProcessPayment" id="BPMNShape_subProcessPayment">
+        <omgdc:Bounds height="385.0" width="477.0" x="390.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startSubPayment" id="BPMNShape_startSubPayment">
+        <omgdc:Bounds height="30.0" width="30.0" x="435.0" y="237.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="paymentMethod" id="BPMNShape_paymentMethod">
+        <omgdc:Bounds height="80.0" width="100.0" x="555.0" y="212.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endSubPayment" id="BPMNShape_endSubPayment">
+        <omgdc:Bounds height="28.0" width="28.0" x="765.0" y="238.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endPayment" id="BPMNShape_endPayment">
+        <omgdc:Bounds height="28.0" width="28.0" x="1125.0" y="238.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="cook" id="BPMNShape_cook">
+        <omgdc:Bounds height="80.0" width="100.0" x="930.0" y="212.5"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-F01C113F-D355-4E28-A0F5-A5144B6D9331" id="BPMNEdge_sid-F01C113F-D355-4E28-A0F5-A5144B6D9331">
+        <omgdi:waypoint x="655.0" y="252.35632183908046"></omgdi:waypoint>
+        <omgdi:waypoint x="765.000057801201" y="252.04022971896208"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-EAA4A85C-829E-4E82-B894-741704B91E6F" id="BPMNEdge_sid-EAA4A85C-829E-4E82-B894-741704B91E6F">
+        <omgdi:waypoint x="325.0" y="252.07072135785006"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="252.16265912305516"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-305A2D35-DAEB-4C16-BE93-B898879B98B8" id="BPMNEdge_sid-305A2D35-DAEB-4C16-BE93-B898879B98B8">
+        <omgdi:waypoint x="867.0" y="252.5"></omgdi:waypoint>
+        <omgdi:waypoint x="930.0" y="252.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-413C5E6F-FD72-427C-9796-03E39CCAD14E" id="BPMNEdge_sid-413C5E6F-FD72-427C-9796-03E39CCAD14E">
+        <omgdi:waypoint x="1030.0" y="252.5"></omgdi:waypoint>
+        <omgdi:waypoint x="1125.0" y="252.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-B132DCF6-C7F4-4B7C-A73E-B2C82874997F" id="BPMNEdge_sid-B132DCF6-C7F4-4B7C-A73E-B2C82874997F">
+        <omgdi:waypoint x="119.9999351215282" y="252.4558825437602"></omgdi:waypoint>
+        <omgdi:waypoint x="225.0" y="252.14705882352942"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-B09D14DE-07CD-453E-BB1E-2A9C04E505D0" id="BPMNEdge_sid-B09D14DE-07CD-453E-BB1E-2A9C04E505D0">
+        <omgdi:waypoint x="465.0" y="252.5"></omgdi:waypoint>
+        <omgdi:waypoint x="555.0" y="252.5"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

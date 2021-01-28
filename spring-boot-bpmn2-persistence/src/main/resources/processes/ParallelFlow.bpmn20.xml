@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="parallelFlow" name="ParallelFlow" isExecutable="true">
+    <startEvent id="startEvent" name="Start Event"></startEvent>
+    <serviceTask id="receive" name="Receive" activiti:expression="#{waitingServiceTask.receive(order)}" activiti:resultVariableName="order"></serviceTask>
+    <serviceTask id="payment" name="Payment" activiti:expression="#{paymentServiceTask.pay(order)}"></serviceTask>
+    <serviceTask id="cook" name="Cook" activiti:expression="#{cookingServiceTask.cook(order)}" activiti:resultVariableName="order"></serviceTask>
+    <parallelGateway id="paralelInput" name="Parallel Input"></parallelGateway>
+    <parallelGateway id="parallelOutput" name="Parallel Output"></parallelGateway>
+    <endEvent id="sid-9C13BB45-BCE2-4F61-A190-932E82817792" name="End Event"></endEvent>
+    <sequenceFlow id="sid-DF1DBEFF-0F9D-41C6-BF30-030819F07AFB" sourceRef="startEvent" targetRef="receive"></sequenceFlow>
+    <sequenceFlow id="sid-DBB3819C-651D-46FC-BD77-46F21132F6E1" sourceRef="receive" targetRef="paralelInput"></sequenceFlow>
+    <sequenceFlow id="sid-314EA0AA-4E7F-462F-9478-457FD52B72CD" sourceRef="paralelInput" targetRef="cook"></sequenceFlow>
+    <sequenceFlow id="sid-9B38B1F9-DDF9-49E7-9B82-064020B0B027" sourceRef="paralelInput" targetRef="payment"></sequenceFlow>
+    <sequenceFlow id="sid-D219E64C-8E89-4E23-8236-81A686A00F1E" sourceRef="cook" targetRef="parallelOutput"></sequenceFlow>
+    <sequenceFlow id="sid-C4B8F724-26E2-4F72-9F74-D819803A2A45" sourceRef="payment" targetRef="parallelOutput"></sequenceFlow>
+    <sequenceFlow id="sid-E45F48A2-F71F-4656-8E27-EA2E0F08970F" sourceRef="parallelOutput" targetRef="sid-9C13BB45-BCE2-4F61-A190-932E82817792"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_parallelFlow">
+    <bpmndi:BPMNPlane bpmnElement="parallelFlow" id="BPMNPlane_parallelFlow">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receive" id="BPMNShape_receive">
+        <omgdc:Bounds height="80.0" width="100.0" x="225.0" y="139.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="payment" id="BPMNShape_payment">
+        <omgdc:Bounds height="80.0" width="100.0" x="525.0" y="0.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="cook" id="BPMNShape_cook">
+        <omgdc:Bounds height="80.0" width="100.0" x="525.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="paralelInput" id="BPMNShape_paralelInput">
+        <omgdc:Bounds height="40.0" width="40.0" x="405.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelOutput" id="BPMNShape_parallelOutput">
+        <omgdc:Bounds height="40.0" width="40.0" x="720.0" y="159.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-9C13BB45-BCE2-4F61-A190-932E82817792" id="BPMNShape_sid-9C13BB45-BCE2-4F61-A190-932E82817792">
+        <omgdc:Bounds height="28.0" width="28.0" x="966.5" y="165.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-9B38B1F9-DDF9-49E7-9B82-064020B0B027" id="BPMNEdge_sid-9B38B1F9-DDF9-49E7-9B82-064020B0B027">
+        <omgdi:waypoint x="425.5" y="158.5"></omgdi:waypoint>
+        <omgdi:waypoint x="425.5" y="40.0"></omgdi:waypoint>
+        <omgdi:waypoint x="525.0" y="40.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-E45F48A2-F71F-4656-8E27-EA2E0F08970F" id="BPMNEdge_sid-E45F48A2-F71F-4656-8E27-EA2E0F08970F">
+        <omgdi:waypoint x="759.5396659707725" y="179.46033402922757"></omgdi:waypoint>
+        <omgdi:waypoint x="966.5000303818456" y="179.02916660337115"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-C4B8F724-26E2-4F72-9F74-D819803A2A45" id="BPMNEdge_sid-C4B8F724-26E2-4F72-9F74-D819803A2A45">
+        <omgdi:waypoint x="625.0" y="40.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="40.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="159.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-DF1DBEFF-0F9D-41C6-BF30-030819F07AFB" id="BPMNEdge_sid-DF1DBEFF-0F9D-41C6-BF30-030819F07AFB">
+        <omgdi:waypoint x="119.9997404911637" y="178.08823376759509"></omgdi:waypoint>
+        <omgdi:waypoint x="225.0" y="178.70588235294116"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D219E64C-8E89-4E23-8236-81A686A00F1E" id="BPMNEdge_sid-D219E64C-8E89-4E23-8236-81A686A00F1E">
+        <omgdi:waypoint x="625.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="199.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-DBB3819C-651D-46FC-BD77-46F21132F6E1" id="BPMNEdge_sid-DBB3819C-651D-46FC-BD77-46F21132F6E1">
+        <omgdi:waypoint x="325.0" y="178.66666666666669"></omgdi:waypoint>
+        <omgdi:waypoint x="405.1324503311258" y="178.13245033112582"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-314EA0AA-4E7F-462F-9478-457FD52B72CD" id="BPMNEdge_sid-314EA0AA-4E7F-462F-9478-457FD52B72CD">
+        <omgdi:waypoint x="425.5" y="197.5"></omgdi:waypoint>
+        <omgdi:waypoint x="425.5" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="525.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

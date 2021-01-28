@@ -41,7 +41,7 @@ public class OrderProcessIntegrator {
         
         variables.put("order", jsonData.read("$"));
         variables.put("orderId", jsonData.read("$.orderId"));
-		runtimeService.startProcessInstanceByKey("paymentFlow", variables);
+		runtimeService.startProcessInstanceByKey("parallelFlow", variables);
 
         LOGGER.info(
             "Done process the order for customer [{}]",
